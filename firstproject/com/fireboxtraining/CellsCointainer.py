@@ -8,7 +8,7 @@ from com.fireboxtraining.XMLinterpreter import XMLinterpreter
 class CellCointainer(object):
     """
     condition boolean list: [node comment edge branch]
-   
+   hellooooo change~
    Nodes { cell: [z y x id cellName]}
    Comments { cell: [z y x id cellName comment]}
    Edges { cell: [target source]}
