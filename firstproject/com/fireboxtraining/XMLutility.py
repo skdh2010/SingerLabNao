@@ -268,10 +268,10 @@ class XMLutility(object):
         ij = ij+1
         for item1 in node:
                 
-            a = str(item1[0])
-            b = str(item1[1])
-            c = str(item1[2])
-            d = str(nodeide)
+            a = str(int(item1[0]/26))
+            b = str(int(item1[1]/13.2))
+            c = str(int(item1[2]/13.2))
+            d = str(item1[3])
             e = item1[4]
             nodeide = nodeide +1
             node=ET.SubElement(node1, "node", id= d, radius="10", x=c, y=b, z=a, inVP="1", inMag="1", time="0")    
