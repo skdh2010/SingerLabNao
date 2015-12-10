@@ -44,7 +44,7 @@ print BranchAnalysis.simplification(AII.Edges['AIId'])[13895]
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/AIIs111815.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "CBinputribbon2.txt", "CBdata22.txt", "CBinputribbon2.xml")
-s = "ITWORKSSSSSSSSSSSSSSSSSSSS"
+s = "ITWORKSSSSSSSSSSSSSSSSSSSSdsadsadsaafdadskfvmfbkfbm;lkbfmb;fb;ak;kmfdb;mbfdabkl"
 mid = time.time()
 print mid-start
 
