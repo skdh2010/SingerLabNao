@@ -3,6 +3,7 @@ Created on 2015. 10. 19.
 
 @author: Nao
 '''
+from __builtin__ import staticmethod
 """
 XMLutility
     pre: Nodes1 and 2 are sorted by y// Nodes2 can have comment
@@ -78,6 +79,64 @@ class XMLutility(object):
             dict[item[4]].append(item)
         
         return dict
+    
+    @staticmethod
+    def CellPrinter(Cellcoin, filename):
+        nodes = Cellcoin.Nodes
+        edges = Cellcoin.Edges
+        print Cellcoin.allCommentExtracted
+        comments = Cellcoin.allCommentExtracted()
+        branches = Cellcoin.allBranchExtracted()
+        Parameter = Cellcoin.Parameter
+        
+        root = ET.Element("things")
+        root.append(Parameter)
+        rgb_t="-1." 
+        a_t="1." 
+        nodeide = 1
+        Cellnames = nodes.keys()
+        for itemz in Cellnames:
+            node = nodes[itemz]
+            edge = edges[itemz]
+            thing=ET.SubElement(root, "thing", id=str(nodeide), colorr='%s' %rgb_t, colorg='%s' %rgb_t, colorb='%s' %rgb_t, colora='%s' %a_t, comment= itemz)
+            node1 = ET.SubElement(thing, "nodes") 
+            nodeide = nodeide +1
+            for item1 in node:
+                a = str(int(item1[0]))
+                b = str(int(item1[1]))
+                c = str(int(item1[2]))
+                d = str(item1[3])
+                e = item1[4]
+                node=ET.SubElement(node1, "node", id= d, radius="10", x=c, y=b, z=a, inVP="1", inMag="1", time="0")    
+            edge1 = ET.SubElement(thing, "edges")
+            for item2 in edge:
+                a = str(item2[0])
+                b = str(item2[1])
+            
+                node=ET.SubElement(edge1, "edge", target = a, source = b )
+            
+        comment1 =ET.SubElement(root, "comments")
+        for item3 in comments:
+            a = str(item3[3])
+            b = str(item3[4])
+            node=ET.SubElement(comment1, "comment", node = a, content = b )
+        
+        branch1 =ET.SubElement(root, "branchpoints")
+        for item3 in branches:
+            a = str(item3[3])
+            node=ET.SubElement(branch1, "branchpoint", id = a)
+        
+        print("done")
+        newfile = filename
+        pile = open(newfile, "w")
+        pile.writelines(ET.tostring(root, pretty_print=True, xml_declaration=True, encoding='UTF-8'))
+        pile.close()    
+        
+    
+    
+    
+    
+    
     """comment vs comment """
     #################CommentVSComment################
     """
@@ -114,6 +173,49 @@ class XMLutility(object):
                     
         return newNodes
         #return XMLutility.killDuplication(newNodes)
+        
+    @staticmethod
+    def compareTwoCellForFirstAndGetComment(scale, Nodes1, Nodes2,threshold):
+        yKey = [item[1] for item in Nodes2]
+        newNodes = []
+        for item in Nodes1:
+            left=bisect_left(yKey,item[1]-threshold)
+            right=bisect_right(yKey,item[1]+threshold)
+            ySatisList = Nodes2[left: right+1];
+            for node in ySatisList:
+                if node[2]<(item[2]+threshold) and node[2]>(item[2]-threshold) and node[0]<(item[0]+threshold) and node[0]>(item[0]-threshold):
+                    #z= int((item[0])/scale[0])
+                   # y= int((item[1])/scale[1])
+                    #x= int((item[2])/scale[2])
+                    #ide= int(item[3])
+                    #cellname = item[4]
+                    newnode = []
+                    #newnode.append(z)
+                    #newnode.append(y)
+                    #newnode.append(x)
+                    newnode.append(item[3])
+                    #newnode.append(cellname)
+                    newnode.append(" from " + node[4])
+            
+                    
+                    newNodes.append(newnode)
+
+                    
+        return newNodes
+    
+    @staticmethod
+    def changeComment(OriginalComment, addList ):
+        for item1 in addList:
+            for item2 in OriginalComment:
+                if(item1[0] == item2[3]):
+                    item2[4] = item2[4] + item1[1]
+        return OriginalComment
+    
+    @staticmethod
+    def commentChanger(scale, Nodes1, Nodes2, threshold):
+        aList= XMLutility.compareTwoCellForFirstAndGetComment(scale, Nodes1, Nodes2, threshold)
+        return XMLutility.changeComment(Nodes1, aList)
+    
     """
     kill nodes with duplicated index in a list form
     [z y x id cellname etc]
@@ -291,7 +393,7 @@ class XMLutility(object):
         branch1 =ET.SubElement(root, "branchpoints")
         for item3 in branch:
             a = str(item3[3])
-            node=ET.SubElement(comment1, "branchpoint", id = a)
+            node=ET.SubElement(branch1, "branchpoint", id = a)
         
         print("done")
         newfile = cellname
@@ -468,6 +570,21 @@ class XMLutility(object):
         with open(outputname2, 'wt') as out:
             pprint.pprint(CBACsorted1, stream=out)
         printCBAC = XMLutility.XMLTempPrinter(CB.Parameter, CBACsorted, outputname3)
-        #pile.writelines()
-        #pile.close()   
+        
+    @staticmethod    
+    def CompareTwoCellsCommentsAndChangeComment(address1,key1,address2,key2,threshold,filename):
+        preCB = XMLinterpreter(address1)
+        preAC = XMLinterpreter(address2)
+        condition  = [True, True, True, True]
+        CB = CellCointainer(preCB, condition)
+        AC = CellCointainer(preAC, condition)
+        comments1 = CB.commentWithKeywordExtract(key1)
+        comments2 = AC.commentWithKeywordExtract(key2)
+        comments1.sort(key = lambda x:x[1])
+        comments2.sort(key = lambda x:x[1])
+        
+        CBAC =XMLutility.commentChanger(CB.scale,comments1, comments2, threshold)
+        CBACsorted =XMLutility.sortNodes(CBAC)
+        CB.Comments = CBACsorted
+        XMLutility.CellPrinter(CB, filename)#
     

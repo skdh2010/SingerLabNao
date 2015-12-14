@@ -235,6 +235,17 @@ class CellCointainer(object):
                     newComments.append(comment)
                     break
         return newComments
+    def allCommentExtracted(self):
+        returner   = []
+        for item in  self.Comments.keys():
+            returner = returner + self.Comments[item]
+        return returner
+            
+    def allBranchExtracted(self):
+        returner   = []
+        for item in  self.Branches.keys():
+            returner = returner + self.Branches[item]        
+        return returner
     #def __findWantedComment(self, Comments, index, *inputs):
     #    newComment = []
     #    for comment in Comments:

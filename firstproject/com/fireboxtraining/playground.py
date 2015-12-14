@@ -10,8 +10,10 @@ from com.fireboxtraining.CellsCointainer import CellCointainer
 from com.fireboxtraining.TreeBuilder import BranchAnalysis
 
 start = time.time()
-condition = [True, True, True, True]
-preAII = XMLinterpreter("c:/d/AIIs_102215.xml")
+#condition = [True, True, True, True]
+#preAII = XMLinterpreter("c:/d/AIIs_102215.xml")
+#cellcoin = CellCointainer(preAII, condition)
+#XMLutility.separtor(cellcoin, "cellname")
 #preCB = XMLinterpreter("c:/d/OFF_CBs_111715.xml")
 #print preCB.scaleExtract()
 #preAC = XMLinterpreter("c:/d/ACs_102215.xml")
@@ -25,9 +27,9 @@ preAII = XMLinterpreter("c:/d/AIIs_102215.xml")
 #print BranchAnalysis.simplification(RB.Edges['RB78'])
 
 
-AII = CellCointainer(preAII, condition)
+#AII = CellCointainer(preAII, condition)
 #print AII.Edges['AIId']
-print BranchAnalysis.simplification(AII.Edges['AIId'])[13895]
+# BranchAnalysis.simplification(AII.Edges['AIId'])[13895]
 
 #AC = CellCointainer(preAC, condition)
 #print AC.allNodesExtract(1)
@@ -44,7 +46,8 @@ print BranchAnalysis.simplification(AII.Edges['AIId'])[13895]
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/AIIs111815.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "CBinputribbon2.txt", "CBdata22.txt", "CBinputribbon2.xml")
-s = "ITWORKSSSSSSSSSSSSSSSSSSSSdsadsadsaafdadskfvmfbkfbm;lkbfmb;fb;ak;kmfdb;mbfdabkl"
+XMLutility.CompareTwoCellsCommentsAndChangeComment("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "Goddman.xml")
+
 mid = time.time()
 print mid-start
 
@@ -65,3 +68,8 @@ print mid-start
 #printCBAC = XMLutility.XMLTempPrinter(CB.Parameter, CBACsorted, "connection.CB-AC.xml")
 #printRBAC = XMLutility.XMLTempPrinter(RB.Parameter, RBACsorted, "connection.RB-AC.xml")
 #printACAII = XMLutility.XMLTempPrinter(AC.Parameter, ACAIIsorted, "connection.AC-AII.xml")
+
+
+
+
+
