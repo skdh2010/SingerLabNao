@@ -88,7 +88,7 @@ class XMLutility(object):
         comments = Cellcoin.allCommentExtracted()
         branches = Cellcoin.allBranchExtracted()
         Parameter = Cellcoin.Parameter
-        
+        scaler = Cellcoin.scale
         root = ET.Element("things")
         root.append(Parameter)
         rgb_t="-1." 
@@ -102,9 +102,9 @@ class XMLutility(object):
             node1 = ET.SubElement(thing, "nodes") 
             nodeide = nodeide +1
             for item1 in node:
-                a = str(int(item1[0]))
-                b = str(int(item1[1]))
-                c = str(int(item1[2]))
+                a = str(int(item1[0]/scaler[0]))
+                b = str(int(item1[1]/scaler[1]))
+                c = str(int(item1[2]/scaler[2]))
                 d = str(item1[3])
                 e = item1[4]
                 node=ET.SubElement(node1, "node", id= d, radius="10", x=c, y=b, z=a, inVP="1", inMag="1", time="0")    
