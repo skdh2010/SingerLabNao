@@ -10,27 +10,31 @@ from com.fireboxtraining.CellsCointainer import CellCointainer
 from com.fireboxtraining.TreeBuilder import BranchAnalysis
 
 start = time.time()
-#condition = [True, True, True, True]
-#preAII = XMLinterpreter("c:/d/AIIs_102215.xml")
+condition = [True, True, True, True]
+#preAII = XMLinterpreter("c:/d/AIIs_111715.xml")
 #cellcoin = CellCointainer(preAII, condition)
 #XMLutility.separtor(cellcoin, "cellname")
 #preCB = XMLinterpreter("c:/d/OFF_CBs_111715.xml")
 #print preCB.scaleExtract()
 #preAC = XMLinterpreter("c:/d/ACs_102215.xml")
-#preRB= XMLinterpreter("c:/d/RBs_102215.xml")
+preRB= XMLinterpreter("c:/d/RBs_102215.xml")
 #CB = CellCointainer(preCB, condition)
-#RB = CellCointainer(preRB, condition)
+RB = CellCointainer(preRB, condition)
+
 #print CB.Edges
 #print RB.Edges['RB68']
-#print BranchAnalysis.simplification(RB.Edges['RB68'])
+print BranchAnalysis.singleStrahler(RB.Edges['RB68'], 11803)
+print BranchAnalysis.Strahler(RB)
+"""  """
 #print RB.Edges['RB78']
 #print BranchAnalysis.simplification(RB.Edges['RB78'])
 
 
 #AII = CellCointainer(preAII, condition)
 #print AII.Edges['AIId']
-# BranchAnalysis.simplification(AII.Edges['AIId'])[13895]
-
+#print BranchAnalysis.simplification(AII.Edges['AIId'])
+#print BranchAnalysis.singleStrahler(cellcoin.Edges['AIId'])
+#print BranchAnalysis.debugStart(AII)
 #AC = CellCointainer(preAC, condition)
 #print AC.allNodesExtract(1)
 #print AC.allNodesExtract(2)
@@ -46,8 +50,9 @@ start = time.time()
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/AIIs111815.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "CBinputribbon2.txt", "CBdata22.txt", "CBinputribbon2.xml")
-XMLutility.CompareTwoCellsCommentsAndChangeComment("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "Goddman.xml")
-s =" signature"
+#XMLutility.CompareTwoCellsCommentsAndChangeComment("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "Goddman.xml")
+#s =" signature"
+
 mid = time.time()
 print mid-start
 

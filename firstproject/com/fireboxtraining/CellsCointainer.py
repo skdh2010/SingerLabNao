@@ -246,6 +246,24 @@ class CellCointainer(object):
         for item in  self.Branches.keys():
             returner = returner + self.Branches[item]        
         return returner
+    
+    def findStartingPoints(self):
+        returner = {}
+        for item in self.Comments.keys():
+            count = 0
+            thePoint= 0
+            for item1 in self.Comments[item]:
+                if item1[5] == "Soma":
+                    count= count +1
+                    thePoint = item1[3]
+            if count > 1:
+                raise Exception('more than 1 soma at' +  str(item)+ '... Evan you gotta do a better job')        
+            elif count < 1:
+                raise Exception('no soma at'+ str(item) + '... Evan you gotta do a better job')
+            else:
+                returner.setdefault(item)
+                returner[item] = thePoint
+                
     #def __findWantedComment(self, Comments, index, *inputs):
     #    newComment = []
     #    for comment in Comments:
