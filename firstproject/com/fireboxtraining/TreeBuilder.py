@@ -60,10 +60,11 @@ class BranchAnalysis:
     @staticmethod
     def Strahler(Cell):
         edges = Cell.Edges
-        startPoints = Cell.findStartingPoints()
-        returner = []
-        for item in edges.keys():
-            returner.append(BranchAnalysis.singleStrahler(edges[item]), startPoints[item])
+        startPoints = Cell.findStartingPointsVar()
+        returner = {}
+        for item in startPoints.keys():
+            returner.setdefault(item)
+            returner[item] = (BranchAnalysis.singleStrahler(edges[item], startPoints[item]))
         return returner
     
     @staticmethod

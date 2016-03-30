@@ -8,6 +8,7 @@ from com.fireboxtraining.XMLinterpreter import XMLinterpreter
 from com.fireboxtraining.XMLutility import XMLutility
 from com.fireboxtraining.CellsCointainer import CellCointainer
 from com.fireboxtraining.TreeBuilder import BranchAnalysis
+from _elementtree import TreeBuilder
 
 start = time.time()
 condition = [True, True, True, True]
@@ -23,8 +24,14 @@ RB = CellCointainer(preRB, condition)
 
 #print CB.Edges
 #print RB.Edges['RB68']
-print BranchAnalysis.singleStrahler(RB.Edges['RB68'], 11803)
-print BranchAnalysis.Strahler(RB)
+#print BranchAnalysis.singleStrahler(RB.Edges['RB68'], 11803)
+#print BranchAnalysis.Strahler(RB)
+preTest =XMLinterpreter("d:/testsoma.xml")
+Test = CellCointainer(preTest, condition)
+print "SOMA".lower() == "Soma".lower()
+print Test.findStartingPointsVar()
+print BranchAnalysis.Strahler(Test)
+
 """  """
 #print RB.Edges['RB78']
 #print BranchAnalysis.simplification(RB.Edges['RB78'])

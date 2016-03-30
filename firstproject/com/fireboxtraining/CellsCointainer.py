@@ -257,12 +257,34 @@ class CellCointainer(object):
                     count= count +1
                     thePoint = item1[3]
             if count > 1:
-                raise Exception('more than 1 soma at' +  str(item)+ '... Evan you gotta do a better job')        
+                raise Exception('more than 1 soma at ' +  str(item)+ '... Evan you gotta do a better job')        
             elif count < 1:
-                raise Exception('no soma at'+ str(item) + '... Evan you gotta do a better job')
+                raise Exception('no soma at '+ str(item) + '... Evan you gotta do a better job')
             else:
                 returner.setdefault(item)
                 returner[item] = thePoint
+    def findStartingPointsVar(self):
+        returner = {}
+       
+        SOMA = "SOMA"
+        for item in self.Comments.keys():
+            count = 0
+            thePoint= 0
+            for item1 in self.Comments[item]:
+                if item1[5].lower() == SOMA.lower():
+                    
+                    count= count +1
+                    thePoint = item1[3]
+            if count == 1:
+                
+                returner.setdefault(item)
+                returner[item] = thePoint
+           # returner.setdefault(item)
+            #returner[item] = count  
+        return returner
+
+                            
+                
                 
     #def __findWantedComment(self, Comments, index, *inputs):
     #    newComment = []
