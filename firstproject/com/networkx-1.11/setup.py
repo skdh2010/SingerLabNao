@@ -4,9 +4,8 @@
 Setup script for networkx
 
 You can install networkx with
-
-python setup.py install
 """
+
 from glob import glob
 import os
 import sys

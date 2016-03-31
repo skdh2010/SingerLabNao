@@ -26,11 +26,11 @@ RB = CellCointainer(preRB, condition)
 #print RB.Edges['RB68']
 #print BranchAnalysis.singleStrahler(RB.Edges['RB68'], 11803)
 #print BranchAnalysis.Strahler(RB)
-preTest =XMLinterpreter("d:/testsoma.xml")
-Test = CellCointainer(preTest, condition)
-print "SOMA".lower() == "Soma".lower()
-print Test.findStartingPointsVar()
-print BranchAnalysis.Strahler(Test)
+#preTest =XMLinterpreter("d:/testsoma.xml")
+#Test = CellCointainer(preTest, condition)
+#print "SOMA".lower() == "Soma".lower()
+#print Test.findStartingPointsVar()
+#print BranchAnalysis.Strahler(Test)
 
 """  """
 #print RB.Edges['RB78']
@@ -54,7 +54,7 @@ print BranchAnalysis.Strahler(Test)
 #XMLutility.CompareTwoCellsCommentAndEdgeAndPrint("c:/d/AIIs_110515.xml", "c:/d/OFF_CBs_110515.xml", 1000, "InputOF_AII_ToOFFCB.xml", "nput")
 #XMLutility.CompareTwoCellsNodeAndPrintMidPoint("c:/d/OFFCBs_102215.xml", "c:/d/AIIs_102215.xml", 1000, "withCluster.xml")
 
-#XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
+XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs_111715.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/AIIs111815.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "CBinputribbon2.txt", "CBdata22.txt", "CBinputribbon2.xml")
 #XMLutility.CompareTwoCellsCommentsAndChangeComment("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "Goddman.xml")

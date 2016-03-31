@@ -18,6 +18,8 @@ from _bisect import bisect_left
 from bisect import bisect_right
 import sys
 import pprint
+import networkx as nx
+import matplotlib.pyplot as plt
 sys.setrecursionlimit(150000000)
 
 class XMLutility(object):
@@ -263,6 +265,35 @@ class XMLutility(object):
         for item in keys:
             returner = returner + dic[item]
         return returner
+
+    @staticmethod
+    def TempCvsCgrapher(OriginalDict, DicDic):
+        G = nx.DiGraph()
+        keys1 = DicDic.keys()
+        for item1 in keys1:
+            G.add_node(item1)
+        
+        for item in keys1:
+            Dic2 = DicDic[item]
+            #f.write( item + " has "+ str(len(XMLutility.DicToList(Dic2))) +" " + key1 
+            Keys2 = Dic2.keys()
+
+            for item2 in Keys2:
+                G.add_weighted_edges_from( [(item, item2, len(Dic2[item2]))]  )
+                #G.add_edge(item, item2, weight = len(Dic2[item2]))
+        
+        #nx.draw(G, with_labels = True)
+        edge_labels=dict([((u,v,),d['weight']) for u,v,d in G.edges(data=True)])
+        
+        edge_colors = ['black' for edge in G.edges()]
+        pos=nx.spring_layout(G)
+        nx.draw_networkx_edge_labels(G,pos, edge_labels=edge_labels)
+        nx.draw(G ,pos, with_labels = True, edge_color=edge_colors, arrows =True)
+        
+        
+        plt.show()
+             
+    
     @staticmethod
     def TempCvsCprinter(OriginalDict, DicDic, outputname, key1):
         f = open(outputname, 'w')
@@ -566,6 +597,7 @@ class XMLutility(object):
        # CBACsorted = XMLutility.dictToCluster(CBACsorted, 200)
         CBACsorted1 =XMLutility.DLtoDDtoDCL(CBAC,200)
         XMLutility.TempCvsCprinter(comments1a, CBACsorted1, outputname, key1)
+        XMLutility.TempCvsCgrapher(comments1a, CBACsorted1)
         #print CBACsorted
         with open(outputname2, 'wt') as out:
             pprint.pprint(CBACsorted1, stream=out)
