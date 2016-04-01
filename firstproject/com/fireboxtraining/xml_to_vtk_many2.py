@@ -7,13 +7,14 @@ from collections import defaultdict
 import os.path
 import zipfile
 import glob
+import lxml.etree as ET
 from com.fireboxtraining.XMLinterpreter import XMLinterpreter
 from com.fireboxtraining.XMLutility import XMLutility
 from com.fireboxtraining.CellsCointainer import CellCointainer
 from com.fireboxtraining.XMLinterpreter import XMLinterpreter
 
 " ------------------ process comments ------------------ "
-def converToVTK():
+def converToVTK(path):
 	def process_comments(comment_list):
 		type_list = {}
 		first_node = -1
@@ -193,21 +194,24 @@ def converToVTK():
 	
 	" ---------------------  MAIN --------------------- "
 	
-	path = "c:/d/Archive/" # ex: "Desktop/Cells/"
+	#path = "c:/d/Archive/" # ex: "Desktop/Cells/"
 	
 	for filename in os.listdir(path):
 		if 'zip' in filename:
 			zfile = zipfile.ZipFile(path+filename)
-			zfile.extractall() 
+			zfile.extractall(path) 
+			print "success till here"
+			
+			
 			infilename = "annotation.xml"
-				
-			preCell = XMLinterpreter(path + "/" + infilename)
-			Cells = CellCointainer(preCell)
+			condition = [True, True, True, True]
+			preCell = XMLinterpreter(path  + infilename)
+			Cells = CellCointainer(preCell, condition)
 			XMLutility.MultiSeparator(Cells)
 			
 			names = Cells.Names
 			for item in names:
-				xmlname = item + ".xml"
+				xmlname = item
 				
 				xmldoc = minidom.parse(xmlname)	
 				

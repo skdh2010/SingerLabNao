@@ -5,9 +5,7 @@ Created on 2016. 3. 30.
 '''
 import networkx as nx
 import matplotlib.pyplot as plt
-G = nx.Graph();
-G.add_node("spam")
-G.add_edges_from([(1,2),(1,3)])
-nx.draw(G)
+from xml_to_vtk_many2 import converToVTK
 
-plt.show()
+
+converToVTK("c:/c/")

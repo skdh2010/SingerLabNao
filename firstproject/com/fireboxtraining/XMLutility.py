@@ -435,7 +435,7 @@ class XMLutility(object):
         
     @staticmethod
     def MultiSeparator(CellCoin):
-        hello = CellCoin.Name
+        hello = CellCoin.Names
         for item in hello:
             XMLutility.separtor(CellCoin, item) 
     
