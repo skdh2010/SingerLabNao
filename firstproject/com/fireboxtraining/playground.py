@@ -1,3 +1,4 @@
+
 '''
 Created on 2015. 9. 24.
 
@@ -9,19 +10,46 @@ from com.fireboxtraining.XMLutility import XMLutility
 from com.fireboxtraining.CellsCointainer import CellCointainer
 from com.fireboxtraining.TreeBuilder import BranchAnalysis
 from _elementtree import TreeBuilder
+from com.fireboxtraining.Transformation import Transformation
+from gaussfitter import gaussfit
+import sys
 
 start = time.time()
 condition = [True, True, True, True]
-#preAII = XMLinterpreter("c:/d/AIIs_111715.xml")
-#cellcoin = CellCointainer(preAII, condition)
+
+#Transformation.Transformation("c:/e/SAC1.xml","c:/e/SAC1.xml", "Ads" )
+"""
+f1 = open('workfile1.txt', 'w')
+f2 = open('workfile2.txt', 'w')
+"""
+precell1 = XMLinterpreter("c:/e/annotation.xml")
+cellcoin1 = CellCointainer(precell1, condition)
+cellcoin1.commentWithKeywordExtractDict("ibbon")
+
+
+Transformation.Transformation("c:/e/SAC1.xml", "c:/e/SAC2.xml", "c:/e/annotation.xml", "c:/e/annotation.xml")
+
+
+
+
+"""
+f1.writelines(str(cellcoin2.allNodesExtract(1)))
+
+f2.writelines(str(Transformation.convertCoord(a, cellcoin2.allNodesExtract(1))))
+
+f1.close()
+f2.close()
+"""
+#XMLutility.MultiSeparator(cellcoin)
+#print cellcoin.allNodesExtract(1)
 #XMLutility.separtor(cellcoin, "cellname")
 #preCB = XMLinterpreter("c:/d/OFF_CBs_111715.xml")
 #print preCB.scaleExtract()
-#preAC = XMLinterpreter("c:/d/ACs_102215.xml")
-preRB= XMLinterpreter("c:/d/RBs_102215.xml")
-#CB = CellCointainer(preCB, condition)
-RB = CellCointainer(preRB, condition)
-
+#preAC = XMLinterpreter("e:/ACs_040116.xml")
+#preRB= XMLinterpreter("e:/RBs_040116.xml")
+#AC = CellCointainer(preAC, condition)
+#RB = CellCointainer(preRB, condition)
+#XMLutility.CompareTwoCellsNodeAndPrintMidPoint("c:/a/RBs_040116.xml", "c:/a/ACs_040116.xml", 1000, "nocluster.xml")
 #print CB.Edges
 #print RB.Edges['RB68']
 #print BranchAnalysis.singleStrahler(RB.Edges['RB68'], 11803)
@@ -54,7 +82,7 @@ RB = CellCointainer(preRB, condition)
 #XMLutility.CompareTwoCellsCommentAndEdgeAndPrint("c:/d/AIIs_110515.xml", "c:/d/OFF_CBs_110515.xml", 1000, "InputOF_AII_ToOFFCB.xml", "nput")
 #XMLutility.CompareTwoCellsNodeAndPrintMidPoint("c:/d/OFFCBs_102215.xml", "c:/d/AIIs_102215.xml", 1000, "withCluster.xml")
 
-XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs_111715.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
+#XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs_111715.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/AIIs111815.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "CBinputribbon2.txt", "CBdata22.txt", "CBinputribbon2.xml")
 #XMLutility.CompareTwoCellsCommentsAndChangeComment("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "Goddman.xml")
