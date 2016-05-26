@@ -5,6 +5,7 @@ Created on 2015. 9. 24.
 @author: Nao
 '''
 import time
+import numpy as np
 from com.fireboxtraining.XMLinterpreter import XMLinterpreter
 from com.fireboxtraining.XMLutility import XMLutility
 from com.fireboxtraining.CellsCointainer import CellCointainer
@@ -22,14 +23,9 @@ condition = [True, True, True, True]
 f1 = open('workfile1.txt', 'w')
 f2 = open('workfile2.txt', 'w')
 """
-precell1 = XMLinterpreter("c:/e/annotation.xml")
-cellcoin1 = CellCointainer(precell1, condition)
-cellcoin1.commentWithKeywordExtractDict("ibbon")
 
-
-Transformation.Transformation("c:/e/SAC1.xml", "c:/e/SAC2.xml", "c:/e/annotation.xml", "c:/e/annotation.xml")
-
-
+Transformation.areaVSrelength("c:/e/SAC1.xml", "c:/e/SAC2.xml",  "c:/r/AIIs_052616.xml")
+#Transformation.Transformation("c:/e/SAC1.xml", "c:/e/SAC2.xml", "c:/e/annotation.xml", "c:/e/annotation.xml")
 
 
 """
