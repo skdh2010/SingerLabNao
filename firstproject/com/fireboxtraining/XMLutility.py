@@ -42,7 +42,7 @@ class XMLutility(object):
             for node in ySatisList:
                 if node[2]<(item[2]+threshold) and node[2]>(item[2]-threshold) and node[0]<(item[0]+threshold) and node[0]>(item[0]-threshold):
                     z= int((node[0]+item[0])/52)
-                    y= int((node[1]+item[1])/26.4)
+                    y= int((node[1]+item[1])/26.4) #IMPORT FIX!!!!!!!!!
                     x= int((node[2]+item[2])/26.4)
                     ide= i
                     cellname = item[4]+"--"+node[4]
@@ -337,9 +337,9 @@ class XMLutility(object):
             ij = ij+1
             for item1 in nodes:
                 
-                a = str(item1[0])
-                b = str(item1[1])
-                c = str(item1[2])
+                a = str(item1[0]/26)
+                b = str(item1[1]/13.2)
+                c = str(item1[2]/13.2)
                 d = str(nodeide)
                 e = item1[4]
                 nodeide = nodeide +1
@@ -501,9 +501,9 @@ class XMLutility(object):
         y= 0
         z= 0
         for item in Nodes:
-            z = x+ item[0]
+            z = z+ item[0]
             y= y+item[1]
-            x= z+item[2]
+            x= x+item[2]
         length = len(Nodes)
         x = x/length
         y = y/length
@@ -559,9 +559,9 @@ class XMLutility(object):
         
         CBAC =XMLutility.compareTwoCellandReturnMidPoint(comments, edges, threshold, 1)
         CBACsorted =XMLutility.sortNodes(CBAC)
-        #CBACsorted = XMLutility.dictToCluster(CBACsorted, threshold)
-        printCBAC = XMLutility.XMLTempPrinter(CB.Parameter, CBACsorted, outputname)
-      
+        CBACsorted = XMLutility.dictToCluster(CBACsorted, threshold)
+        printCBAC = XMLutility.XMLTempPrinter1(CB.Parameter, CBACsorted, outputname)
+        
 
 
 
@@ -576,8 +576,10 @@ class XMLutility(object):
         
         CBAC =XMLutility.compareTwoCellandReturnMidPoint(CB.allNodesExtract(1), AC.allNodesExtract(1), threshold, 1)
         CBACsorted =XMLutility.sortNodes(CBAC)
+        #print CBACsorted
         CBACsorted = XMLutility.dictToCluster(CBACsorted, 200)
         printCBAC = XMLutility.XMLTempPrinter1(CB.Parameter, CBACsorted, outputname)
+        print CBACsorted
     
     @staticmethod    
     def CompareTwoCellsComments(address1,key1,address2,key2,threshold,outputname, outputname2, outputname3):
@@ -597,11 +599,17 @@ class XMLutility(object):
        # CBACsorted = XMLutility.dictToCluster(CBACsorted, 200)
         CBACsorted1 =XMLutility.DLtoDDtoDCL(CBAC,200)
         XMLutility.TempCvsCprinter(comments1a, CBACsorted1, outputname, key1)
+        
         XMLutility.TempCvsCgrapher(comments1a, CBACsorted1)
+        
         #print CBACsorted
         with open(outputname2, 'wt') as out:
             pprint.pprint(CBACsorted1, stream=out)
+            
         printCBAC = XMLutility.XMLTempPrinter(CB.Parameter, CBACsorted, outputname3)
+        
+        
+        
         
     @staticmethod    
     def CompareTwoCellsCommentsAndChangeComment(address1,key1,address2,key2,threshold,filename):

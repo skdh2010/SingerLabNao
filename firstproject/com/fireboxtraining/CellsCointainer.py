@@ -28,7 +28,7 @@ class CellCointainer(object):
         self.Parameter = None
         self.scale = secondInput.scale
         if(NCBEboolean == None):
-            raise Exception('no inputbro')
+            raise Exception('no condition is given')
         
         elif(isinstance(secondInput,XMLinterpreter)):
             Name = secondInput.nameExtract()
@@ -134,6 +134,9 @@ class CellCointainer(object):
             comment[key] = int_list
         return comment
     
+    
+    
+    
     def __branchNodeExtract(self, Branches):
         Keys = self.Nodes.keys()
         EdgeNode = {}
@@ -235,6 +238,33 @@ class CellCointainer(object):
                     newComments.append(comment)
                     break
         return newComments
+    
+    def commentWithKeywordExtractDict(self, key1):
+        newComment = {}
+        for item1 in self.Comments.keys():
+            newComment.setdefault(item1)
+            newComment[item1] = []
+            
+            
+        for item2 in self.Comments.keys():
+            
+            for comment in self.Comments[item2]:
+                
+                #print comment[5]
+                if comment[5].find(key1) != -1:
+                    newComment[item2].append(comment)
+                    
+        newNewComment = {}
+        
+        for item3 in newComment.keys():
+            if len(newComment[item3]) != 0:
+                
+                newNewComment.setdefault(item3)
+                newNewComment[item3] = newComment[item3]
+            
+        
+        return newNewComment
+    
     def allCommentExtracted(self):
         returner   = []
         for item in  self.Comments.keys():

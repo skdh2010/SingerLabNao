@@ -12,20 +12,37 @@ from com.fireboxtraining.CellsCointainer import CellCointainer
 from com.fireboxtraining.TreeBuilder import BranchAnalysis
 from _elementtree import TreeBuilder
 from com.fireboxtraining.Transformation import Transformation
-from gaussfitter import gaussfit
+from ConnectionAnalysis import ConnectionAnalysis
 import sys
+from shapely.geometry import Polygon
+
+import re
 
 start = time.time()
-condition = [True, True, True, True]
+#condition = [True, True, True, True]
 
 #Transformation.Transformation("c:/e/SAC1.xml","c:/e/SAC1.xml", "Ads" )
-"""
-f1 = open('workfile1.txt', 'w')
-f2 = open('workfile2.txt', 'w')
-"""
+#"""
+#f1 = open('workfile1.txt', 'w')
+#f2 = open('workfile2.txt', 'w')
+#"""
 
-Transformation.areaVSrelength("c:/e/SAC1.xml", "c:/e/SAC2.xml",  "c:/r/AIIs_052616.xml")
-#Transformation.Transformation("c:/e/SAC1.xml", "c:/e/SAC2.xml", "c:/e/annotation.xml", "c:/e/annotation.xml")
+
+ConnectionAnalysis.areaVSconnection("c:/e/SAC1.xml", "c:/e/SAC2.xml", "d:/AIIs_052616.xml", "nput", "d:/CBs_052616.xml", "ibbon", 500, ' input ')
+#ConnectionAnalysis.areaVSconnection("c:/e/SAC1.xml", "c:/e/SAC2.xml", "d:/CBs_052616.xml", "nput","d:/AIIs_052616.xml", "utput",  500)
+##square = Polygon([(0,0),(1,0),(1,1),(0,1)])
+
+#rect = Polygon([(0.5,0),(0.8,0.5),(1.5,0.7),(2,0)])
+#rect = Polygon([[3,0],[2,1],[2,0]])
+#print rect.exterior.xy
+#x,y = square.intersection(rect).exterior.xy
+##print rect.area
+
+
+
+
+#Transformation.areaVSrelength2("c:/e/SAC1.xml", "c:/e/SAC2.xml",  "c:/r/CBs_052616.xml")
+#Transformation.Transformation("cb:/e/SAC1.xml", "c:/e/SAC2.xml", "c:/e/annotation.xml", "c:/e/annotation.xml")
 
 
 """
@@ -79,7 +96,7 @@ f2.close()
 #XMLutility.CompareTwoCellsNodeAndPrintMidPoint("c:/d/OFFCBs_102215.xml", "c:/d/AIIs_102215.xml", 1000, "withCluster.xml")
 
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs_111715.xml","nput",  200, "CBribbonToinput.txt", "Ribbon-input.txt", "CBribbonToinput.xml")
-#XMLutility.CompareTwoCellsComments("c:/d/AIIs111815.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
+#XMLutility.CompareTwoCellsComments("c:/d/AIIs_111715.xml","utput","c:/d/OFFCBs111815.xml", "nput",  200, "AIoutputToinput.txt", "output-input.txt", "AIoutputToinput.xml")
 #XMLutility.CompareTwoCellsComments("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "CBinputribbon2.txt", "CBdata22.txt", "CBinputribbon2.xml")
 #XMLutility.CompareTwoCellsCommentsAndChangeComment("c:/d/OFFCBs111815.xml", "ibbon","c:/d/AIIs111815.xml","nput",  100, "Goddman.xml")
 #s =" signature"
