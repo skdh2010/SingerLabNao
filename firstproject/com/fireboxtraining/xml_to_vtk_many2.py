@@ -230,7 +230,7 @@ def converToVTK(path):
 				rehash, parent_hash = reorder_nodes(first_node, xyz_and_radius)
 		
 				#create file
-				create_file("c:/e/" + name + ".vtk", rehash, xyz_and_radius, parent_hash)	
+				create_file(path + name + ".vtk", rehash, xyz_and_radius, parent_hash)	
 				print "done"
 		
 	
@@ -258,7 +258,7 @@ def converToVTK(path):
 
 
 
-
+converToVTK("C:/Users/Lee/Downloads/")
 
 
 
